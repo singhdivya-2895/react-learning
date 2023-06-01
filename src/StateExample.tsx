@@ -11,7 +11,6 @@ export default function Demo() {
                 <button onClick={() => setCount(count + 1)}>Increment</button>
                 <button onClick={() => setCount(count - 1)}>Decrement</button>
             </div>
-
             <Userform count={count} />
         </>
     );
