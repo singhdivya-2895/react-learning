@@ -13,6 +13,7 @@ const UserformBase = ({ count }: { count: number }) => {
     const [form, setForm] = useState<IUserForm>(defaultFormValue);
     const [ageClass, setAgeClass] = useState("");
 
+    console.log("I am rendered");
     const onChangeName = (event: any) => {
         setForm({
             ...form,

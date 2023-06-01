@@ -1,6 +1,5 @@
 import { ShoppingList } from './ListExample';
-import StateExample from './StateExample';
-import { Userform } from './UserForm';
+import { MyTable } from "./MyTable";
 
 const App = () => {
     return <>

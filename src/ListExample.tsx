@@ -1,4 +1,6 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
+import './index.css';
+import { AddItemButton } from "./AddItemButton";
 
 let cartItems: string[] = [
     "Dress", "Perfume",
@@ -6,8 +8,8 @@ let cartItems: string[] = [
 ]
 
 export const ShoppingList = () => {
-    const [text, setText] = useState('');
     const [list, setList] = useState<string[]>(cartItems);
+    const [checked, setchecked] = useState<boolean>(false);
 
     const itemsCount = useMemo(() => {
         return list.length
@@ -18,28 +20,17 @@ export const ShoppingList = () => {
             return <li key={index}>{item}</li>;
         })
     }, [list]);
-
-    const clicked = (event: any) => {
-        const newArray = [...list, text];
+    const saveItem = useCallback((newItem: string) => {
+        const newArray = [...list, newItem];
         setList(newArray);
-    };
+    }, [list]);
+
     return (<>
-        <div>
-            <input
-                type="text" name="newItem" value={text}
-                onChange={(event) => setText(event.target.value)} />
-            <input
-                type="button"
-                onClick={clicked} value={"Add"} />
-        </div>
+        <input type="checkbox" checked={checked} onClick={() => setchecked(!checked)} />
+        <AddItemButton onclick={saveItem} />
         <h2>Shopping List ({itemsCount})</h2>
         <ul>{listItems}</ul>
     </>)
 }
-
-
-
-
-
 
 

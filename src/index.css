@@ -16,3 +16,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+table, tr ,td, th{
+ border: 2px solid;
+ border-radius: 1px;
+ border-color: purple;
+ border-collapse: collapse;
+}
