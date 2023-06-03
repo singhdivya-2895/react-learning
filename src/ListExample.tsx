@@ -20,6 +20,7 @@ export const ShoppingList = () => {
             return <li key={index}>{item}</li>;
         })
     }, [list]);
+
     const saveItem = useCallback((newItem: string) => {
         const newArray = [...list, newItem];
         setList(newArray);
@@ -27,10 +28,9 @@ export const ShoppingList = () => {
 
     return (<>
         <input type="checkbox" checked={checked} onClick={() => setchecked(!checked)} />
-        <AddItemButton onclick={saveItem} />
+        <AddItemButton parentMethod={saveItem} />
         <h2>Shopping List ({itemsCount})</h2>
         <ul>{listItems}</ul>
     </>)
 }
-
 

@@ -1,15 +1,20 @@
-import React, { memo, useMemo, useState } from "react";
+import React, { memo, useState } from "react";
 import './index.css';
-
+// demonstrates passing a function as a prop to a child component 
+//IButtonProps interface defines the shape of the props that AddItemButton expects. 
+//It specifies a prop called onclick that is a function taking a string
+// parameter and returning void (no return value).
 interface IButtonProps {
-    onclick: (item: string) => void,
+    parentMethod: (item: string) => void,
 }
 
-export const AddItemButton = memo(({ onclick }: IButtonProps): JSX.Element => {
+export const AddItemButton = memo(({ parentMethod }: IButtonProps): JSX.Element => {
     const [text, setText] = useState('');
     console.log("I am rendered");
+
     const addItemToParent = () => {
-        onclick(text);
+        parentMethod(text);
+        setText('');
     };
     return (<>
         <div>
