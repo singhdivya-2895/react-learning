@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { SearchBox } from "./Searchbox";
 
 interface ToDos {
     userId: number,
@@ -7,13 +8,17 @@ interface ToDos {
     completed: boolean
 }
 export const Api = () => {
+    //humesha useState ko type dena chaiye 
+    //example <TOdos[]> isse usko pata chal jayega ki kaise type lene hai.
     const [data, setData] = useState<ToDos[]>();
     const [filteredList, setfilteredList] = useState<ToDos[]>();
-    const [words, setWords] = useState("");
+    const [words, setWords] = useState<string>("");
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setWords(event.target.value);
-    }
+    const handleChange = useCallback((newValue: string) => {
+        setWords(newValue);
+    }, []);
+    //ismai 2 useEffect hai and 1st wala ek hi baar chlega call marne pe kyuki
+    //uske ander dependency hi nahi hai.
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -26,39 +31,20 @@ export const Api = () => {
         };
         fetchData();
     }, []);
-
-    // const data = useMemo(() => {
-    //     const fetchData = async () => {
-    //         let jsonData: ToDos[] = [];
-    //         try {
-    //             const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-    //             jsonData = await response.json();
-    //         } catch (error) {
-    //             console.log("Error fetching data:", error);
-    //         }
-    //         return jsonData;
-    //     };
-    //     return fetchData();
-    // }, []);
-
-    //const filteredList = useMemo(() => {
-    //return data?.filter((item: ToDos) => item.title.includes(words));
-    //},[data, words]);
-    //useEffect doesnt return any value.
-
+    //ye 2nd wale useEffect ko humne list ko filter karane ke liye liya hai
+    //ismai 2 dependencies hai data and words.
+    //
     useEffect(() => {
         const list = data?.filter((item: ToDos) => item.title.includes(words));
         setfilteredList(list);
-    }, [data, words])
+    }, [data, words]);
+
     return (
         <div>
-            <input type="text" value={words} onChange={handleChange} />
-            <p>Value: {words}</p>
+            <SearchBox onChange={handleChange} />
             {filteredList && <ul>
                 {filteredList?.map((item) => (
-                    <li key={item.id}>
-                        {item.title}
-                    </li>
+                    <li key={item.id}>{item.title}</li>
                     // <li key="1">Item 1</li>
                 ))}
             </ul>}
