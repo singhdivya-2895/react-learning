@@ -14,6 +14,7 @@ export const MyTable = () => {
         </tr>
     ));
     return <div>
+        <h1>Render table from multi-array</h1>
         <table>
             <tr>
                 <th>First Name</th>

@@ -7,7 +7,7 @@ interface ToDos {
     title: string,
     completed: boolean
 }
-export const Api = () => {
+export const ToDoListComponent = () => {
     //humesha useState ko type dena chaiye 
     //example <TOdos[]> isse usko pata chal jayega ki kaise type lene hai.
     const [data, setData] = useState<ToDos[]>();
@@ -33,7 +33,6 @@ export const Api = () => {
     }, []);
     //ye 2nd wale useEffect ko humne list ko filter karane ke liye liya hai
     //ismai 2 dependencies hai data and words.
-    //
     useEffect(() => {
         const list = data?.filter((item: ToDos) => item.title.includes(words));
         setfilteredList(list);
@@ -41,13 +40,22 @@ export const Api = () => {
 
     return (
         <div>
+            <h1>Filter ToDos based on the Text</h1>
             <SearchBox onChange={handleChange} />
-            {filteredList && <ul>
-                {filteredList?.map((item) => (
-                    <li key={item.id}>{item.title}</li>
-                    // <li key="1">Item 1</li>
-                ))}
-            </ul>}
+            {filteredList &&
+                // <select id="todos">
+                //     {filteredList?.map((item) => (
+                //         <option value={item.id}>{item.title}</option>
+                //         // <option value="volvo">Volvo</option>
+                //     ))}
+                // </select>
+                <ul>
+                    {filteredList?.map((item) => (
+                        <li key={item.id}>{item.title}</li>
+                        // <li key="1">Item 1</li>
+                    ))}
+                </ul>
+            }
         </div>
     );
 }

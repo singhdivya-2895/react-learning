@@ -1,10 +1,13 @@
-import { Api } from './Api';
-import { ShoppingList } from './ListExample';
-import { MyTable } from "./MyTable";
+import { BrowserRouter } from 'react-router-dom';
+import { MyMainPage } from './MyMainPage';
+import { Navbar } from './NavigationBar';
 
 const App = () => {
     return <>
-        <Api />
+        <BrowserRouter>
+            <Navbar />
+            <MyMainPage />
+        </BrowserRouter>
     </>;
 }
 

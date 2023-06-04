@@ -27,6 +27,7 @@ export const ShoppingList = () => {
     }, [list]);
 
     return (<>
+        <h1>Page to add items in shopping list</h1>
         <input type="checkbox" checked={checked} onClick={() => setchecked(!checked)} />
         <AddItemButton parentMethod={saveItem} />
         <h2>Shopping List ({itemsCount})</h2>
