@@ -4,6 +4,7 @@ import { MyTable } from './MyTable';
 import StateExample from './StateExample';
 import { PostComponent } from './Post';
 import { HomePage } from './HomePage';
+import { NewWork } from './NewWork';
 
 export const MyMainPage = () => {
     return (
@@ -13,6 +14,7 @@ export const MyMainPage = () => {
             <Route path="/table" element={<MyTable />} />
             <Route path="/state" element={<StateExample />} />
             <Route path="/posts" element={<PostComponent />} />
+            <Route path="/example" element={<NewWork />} />
             <Route path="/*" element={<div>404 Not found</div>} />
         </Routes>
     );
